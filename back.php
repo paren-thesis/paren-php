@@ -35,11 +35,13 @@ if(!empty($name)) {
 } else {
     echo 'Name field is empty';
 }
+echo '<br>';
 if(!empty($email)) {
     echo $email;
 } else {
     echo 'Email field is empty';
 }
+echo '<br>';
 if(!empty($age)) {
     echo $age;
 } else {
