@@ -1,5 +1,5 @@
 <?php
-echo'<!DOCTYPE html>
+echo '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,9 +16,13 @@ echo'<!DOCTYPE html>
 </body>
 </html>';
 
-echo $_POST['name'];
-echo "<br>";
-echo $_POST['email'];
-echo "<br>";
-echo $_POST['age'];
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    echo $_POST['name'];
+    echo "<br>";
+    echo $_POST['email'];
+    echo "<br>";
+    echo $_POST['age'];
+} else {
+    echo 'ERROR!';
+}
 ?>
