@@ -30,21 +30,37 @@ $name = trim($_POST["name"]);
 $email = trim($_POST["email"]);
 $age = trim($_POST["age"]);
 
-if(!empty($name)) {
-    echo "My name is {$name}";
+if(empty($name)) {
+    echo "<p style='color:red;'> Name field is empty </p>";
 } else {
-    echo 'Name field is empty';
+    if(!preg_match('/[a-zA-z]/', $name)){
+        echo "<p style='color:blue;'>Name is not valid</p>";
+    } else {
+        echo "Hello {$name}, nice to meet you";
+    }
 }
+
 echo '<br>';
-if(!empty($email)) {
-    echo "My email is {$email}";
+if(empty($email)) {
+    echo "<p style='color:red;'> Email field is empty </p>";
 } else {
-    echo 'Email field is empty';
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<p style='color:blue;'>Name is not valid</p>";
+    } else { 
+        echo "Your email is {$email}";
+    }
+    
 }
+
+
 echo '<br>';
-if(!empty($age)) {
-    echo "I am {$age} years old";
+if(empty($age)) {
+    echo "<p style='color:red;'> Age field is empty </p>";
 } else {
-    echo 'Age field is empty';
+    if(!preg_match('/[0-9]/', $name)){
+        echo "<p style='color:blue;'>Age is not valid</p>";
+    } else {
+        echo "You are {$age} years old, Here you grow ohh";
+    }
 }
 ?>
