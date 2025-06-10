@@ -26,24 +26,24 @@
 //     echo 'ERROR!';
 // }
 
-$name = $_POST["name"];
-$email = $_POST["email"];
-$age = $_POST["age"];
+$name = trim($_POST["name"]);
+$email = trim($_POST["email"]);
+$age = trim($_POST["age"]);
 
 if(!empty($name)) {
-    echo $name;
+    echo "My name is {$name}";
 } else {
     echo 'Name field is empty';
 }
 echo '<br>';
 if(!empty($email)) {
-    echo $email;
+    echo "My email is {$email}";
 } else {
     echo 'Email field is empty';
 }
 echo '<br>';
 if(!empty($age)) {
-    echo $age;
+    echo "I am {$age} years old";
 } else {
     echo 'Age field is empty';
 }
