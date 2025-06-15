@@ -6,6 +6,7 @@ $level = 200;
 $department = "Computer Science";
 $programme = "BTECH ICT";
 $loggedIn = false;
+$p = "<p></p>"
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ $loggedIn = false;
 </head>
 
 <body>
-    <?php 
+    <?php
     echo "<p>My name is {$name}, and I am {$age}+ years of age.</p>";
     echo "<p>I am a student of {$schoolName} and I am in the {$department} department</p>";
     echo "<p>I am a level {$level} student and I am reading {$programme}</p>";
@@ -30,7 +31,22 @@ $loggedIn = false;
     }
     ?>
 
-    <!--  -->
+    <!-- Checking declared varable types  -->
+    <?php
+    // This can be used
+    echo gettype($name);
+    // Or this
+    echo "{$p}";
+    var_dump($age);
+    echo "{$p}";
+    var_dump($schoolName);
+    echo "{$p}";
+    var_dump($level);
+    echo "{$p}";
+    var_dump($department);
+    echo "{$p}";
+    var_dump($programme);
+    ?>
 </body>
 
 </html>
