@@ -29,6 +29,8 @@ $loggedIn = false;
         echo "<p> I am not logged in</p>";
     }
     ?>
+
+    <!--  -->
 </body>
 
 </html>
