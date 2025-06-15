@@ -47,6 +47,14 @@ $p = "<p></p>"
     echo "{$p}";
     var_dump($programme);
     ?>
+
+    <!-- PHP auto type conversion -->
+    <?php 
+    $num1 = "12";
+    $num2 = 13;
+    $num3 = $num1 + $num2;
+    echo "$p The result is $num3";
+    ?>
 </body>
 
 </html>
