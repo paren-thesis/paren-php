@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'db.php';
 
 // Initialize individual error variables
 $username_error = "";
@@ -47,12 +48,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $programme_error = "Programme is required";
     }
 
-    // If no errors, redirect to success.php
+    // If no errors, insert into database and redirect to success.php
     if (empty($username_error) && empty($email_error) && empty($age_error) && 
         empty($gender_error) && empty($programme_error)) {
-        $_SESSION['form_data'] = $_POST;
-        header("Location: success.php");
-        exit();
+        $db = new Database();
+        $conn = $db->getConnection();
+        
+        $stmt = $conn->prepare("INSERT INTO student (username, email, age, gender, programme) VALUES (?, ?, ?, ?, ?)");
+        if ($stmt) {
+            $stmt->bind_param("ssiss", $username, $email, $age, $gender, $programme);
+            if ($stmt->execute()) {
+                $_SESSION['form_data'] = $_POST;
+                $stmt->close();
+                $conn->close();
+                header("Location: success.php");
+                exit();
+            } else {
+                $username_error = "Database error: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            $username_error = "Database error: " . $conn->error;
+        }
+        $conn->close();
     }
 }
 ?>
