@@ -1,14 +1,21 @@
 <?php
 session_start();
 
-// Check if form data exists in session
-
-if (!isset($_SESSION['form_data'])) {
+// Check if form data exists in session or POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['email'], $_POST['age'], $_POST['gender'], $_POST['programme'])) {
+    $formData = [
+        'username' => $_POST['username'],
+        'email' => $_POST['email'],
+        'age' => $_POST['age'],
+        'gender' => $_POST['gender'],
+        'programme' => $_POST['programme'],
+    ];
+} elseif (isset($_SESSION['form_data'])) {
+    $formData = $_SESSION['form_data'];
+} else {
     header("Location: newform.php");
     exit();
 }
-
-$formData = $_SESSION['form_data'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +66,7 @@ $formData = $_SESSION['form_data'];
 
                         <div class="d-grid gap-2">
                             <a href="index.php" class="btn btn-primary">Register Another User</a>
+                            <a href="all_records.php" class="btn btn-secondary">View All Records</a>
                         </div>
                     </div>
                 </div>
@@ -71,6 +79,8 @@ $formData = $_SESSION['form_data'];
 </body>
 </html>
 <?php
-// Clear the session data after displaying
-unset($_SESSION['form_data']);
+// Clear the session data after displaying, only if not coming from POST
+if (!isset($_POST['username'])) {
+    unset($_SESSION['form_data']);
+}
 ?>
