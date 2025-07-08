@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+require_once("database.php");
+
+
+$error[] = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $name = trim($_POST['name']);
 $offer = $_POST['offer'];
 $pickup = $_POST['pickup'];
@@ -71,3 +79,6 @@ if (empty($car_comment)) {
     echo $car_comment;
 }
 
+
+$db = new Database("localhost", "root", "" ,"car_rentals");
+}
