@@ -166,7 +166,7 @@
 										</div>
 
 										<div class="field half">
-											<input type="text" name="email" id="email" placeholder="Email" fdprocessedid="09lf6a">
+											<input type="email" name="email" id="email" placeholder="Email" fdprocessedid="09lf6a">
 										</div>
 
 										<div class="field half">

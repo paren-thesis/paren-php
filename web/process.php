@@ -16,11 +16,15 @@ if (empty($name)) {
     echo $name;
 }
 
-echo'<br>';
+echo '<br>';
+
+echo $offer;
+
+echo '<br>';
 
 if (empty($email)) {
     echo "<span style='color: red'>Email field is empty</span>";
-} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { 
+} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo "<span style='color: red'>Invalid email</span>";
 } else {
     echo $email;
@@ -31,12 +35,35 @@ echo '<br>';
 if (empty($contact)) {
     echo "<span style='color: red'>Contact field is empty</span>";
 } else if (!preg_match('/^\d{10}+$/', $contact)) {
-    echo "<span style='color: red'>Contact must contain only digits</span>";
+    echo "<span style='color: red'>Contact must contain only 10 digits</span>";
 } else {
     echo $contact;
 }
 
-echo"<br>";
+echo "<br>";
+
+
+if (!empty($pickup) && !empty($return_date)) {
+    $pickup_date = strtotime($pickup);
+    $return_date_val = strtotime($return_date);
+    if ($return_date_val < $pickup_date) {
+        echo "<span style='color: red'>Return date cannot be earlier than pickup date</span><br>";
+    } else {
+        echo $pickup;
+        echo "<br>";
+        echo $return_date;
+    }
+} else {
+    if (empty($return_date)) {
+        echo "Return date is empty";
+    }
+
+    if (empty($pickup)) {
+        echo "Pickup Date is empty";
+    }
+}
+
+echo "<br>";
 
 if (empty($car_comment)) {
     echo "<span style='color: red'>Comment section is empty</span>";
@@ -44,37 +71,3 @@ if (empty($car_comment)) {
     echo $car_comment;
 }
 
-echo "<br>";
-
-// Repair the logic for checking pickup and return_date fields
-// Check if both pickup and return_date are not empty before comparing
-if (!empty($pickup) && !empty($return_date)) {
-    $pickup_date = strtotime($pickup);
-    $return_date_val = strtotime($return_date);
-    if ($return_date_val < $pickup_date) {
-        echo "<span style='color: red'>Return date cannot be earlier than pickup date</span><br>";
-    }
-}
-
-if (empty($pickup)) {
-    echo "<span style='color: red'>Pickup field is empty</span>";
-} else {
-    echo $pickup;
-}
-
-echo "<br>";
-
-if (empty($return_date)) {
-    echo "<span style='color: red'>Return date field is empty</span>";
-} else {
-    echo $return_date;
-}
-
-echo "<br>";
-
-if (!empty($$pickup) && !empty($$return_date)) {
-    echo ($return_date);
-    echo ($$pickup);
-} else {
-    echo $car_comment;
-}
