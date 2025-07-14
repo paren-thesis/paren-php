@@ -193,6 +193,9 @@
 											<ul class="actions">
 												<li><input type="submit" value="Book now" class="primary"></li>
 											</ul>
+											<ul class="action">
+												<a href="viewbooking.php">View Bookings</a>
+											</ul>
 										</div>
 									</div>
 								</form>
