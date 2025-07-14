@@ -7,8 +7,8 @@ CREATE TABLE booking (
     name VARCHAR(100),
     email VARCHAR(50),
     offer VARCHAR(20),
-    contact VARCHAR(11),
-    pickup DATETIME,
-    return_date DATETIME,
+    contact VARCHAR(10),
+    pickup DATE,
+    return_date DATE,
     car_comment VARCHAR(255)
 );

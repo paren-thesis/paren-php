@@ -32,7 +32,7 @@ class Database
     public function storeCarRentalData($name, $email, $offer, $contact, $pickup, $return_date, $car_comment)
     {
         try {
-            $query = $this->db->prepare("INSERT INTO booking (name, email, offer, contact, pickup, return_date, car_comment ) VALUES (?,?,?,?,?,?)");
+            $query = $this->db->prepare("INSERT INTO booking (name, email, offer, contact, pickup, return_date, car_comment ) VALUES (?,?,?,?,?,?,?)");
             $query->bindParam(1, $name);
             $query->bindParam(2, $email);
             $query->bindParam(3, $offer);
