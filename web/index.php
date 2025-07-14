@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <!-- saved from url=(0090)https://demo.phpjabbers.com/free-web-templates/car-rental-website-template-186/offers.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -146,35 +148,43 @@
 									<div class="fields">
 										<div class="field half">
 											<input type="text" name="name" id="name" placeholder="Your Name" fdprocessedid="pfb1qv">
+											<p style="color:red;"><?= $_SESSION["errors"]["name"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
 											<select name="offer" id="vehicle-type" fdprocessedid="18taxs">
+												<option value="">---Select an Offer---</option>
 												<option value="Select Offer A">Select Offer A</option>
 												<option value="Select Offer B">Select Offer B</option>
 												<option value="Select Offer C">Select Offer C</option>
 												<option value="Select Offer D">Select Offer D</option>
 											</select>
+											<p style="color:red;"><?= $_SESSION["errors"]["offer"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
 											<input type="date" name="pickup" id="date-from" placeholder="Pick-up date/time" fdprocessedid="jupx1a">
+											<p style="color:red;"><?= $_SESSION["errors"]["date"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
 											<input type="date" name="return_date" id="date-to" placeholder="Return date/tiem" fdprocessedid="ox90qs">
+											<p style="color:red;"><?= $_SESSION["errors"]["date"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
 											<input type="email" name="email" id="email" placeholder="Email" fdprocessedid="09lf6a">
+											<p style="color:red;"><?= $_SESSION["errors"]["email"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
 											<input type="text" name="contact" id="phone" placeholder="Phone" fdprocessedid="cufy9">
+											<p style="color:red;"><?= $_SESSION["errors"]["contact"] ?? "" ?></p>
 										</div>
 
 										<div class="field">
 											<div class="textarea-wrapper"><textarea name="car_comment" id="message" rows="1" placeholder="Comment" style="overflow: hidden; resize: none; height: 69px;"></textarea></div>
+											<p style="color:red;"><?= $_SESSION["errors"]["car_comment"] ?? "" ?></p>
 										</div>
 
 										<div class="field text-right">
