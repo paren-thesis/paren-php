@@ -151,10 +151,38 @@
 											<th>Email</th>
 											<th>Offer</th>
 											<th>Contact</th>
+											<th>Pickup</th>
+											<th>Return Date</th>
+											<th>Comment</th>
 										</tr>
 									</thead>
-									<tbody></tbody>
-								</table>
+									<tbody>
+    <?php
+    require_once 'database.php';
+    $db = new Database('localhost', 'root', '', 'car_rentals');
+    $rentals = [];
+    try {
+        $rentals = $db->connect()->query('SELECT name, email, offer, contact, pickup, return_date, car_comment FROM booking')->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo '<tr><td colspan="7">Error fetching bookings</td></tr>';
+    }
+    if ($rentals && count($rentals) > 0):
+        foreach ($rentals as $row): ?>
+            <tr>
+                <td><?= htmlspecialchars($row['name']) ?></td>
+                <td><?= htmlspecialchars($row['email']) ?></td>
+                <td><?= htmlspecialchars($row['offer']) ?></td>
+                <td><?= htmlspecialchars($row['contact']) ?></td>
+                <td><?= htmlspecialchars($row['pickup']) ?></td>
+                <td><?= htmlspecialchars($row['return_date']) ?></td>
+                <td><?= htmlspecialchars($row['car_comment']) ?></td>
+            </tr>
+    <?php endforeach;
+    else: ?>
+        <tr><td colspan="7">No bookings found.</td></tr>
+    <?php endif; ?>
+    </tbody>
+</table>
 							</section>
 							<section>
 								<h2>Contact Info</h2>

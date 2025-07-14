@@ -147,12 +147,12 @@
 								<form method="post" action="process.php">
 									<div class="fields">
 										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Your Name" fdprocessedid="pfb1qv">
+											<input type="text" name="name" id="name" placeholder="Your Name">
 											<p style="color:red;"><?= $_SESSION["errors"]["name"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
-											<select name="offer" id="vehicle-type" fdprocessedid="18taxs">
+											<select name="offer" id="vehicle-type">
 												<option value="">---Select an Offer---</option>
 												<option value="Select Offer A">Select Offer A</option>
 												<option value="Select Offer B">Select Offer B</option>
@@ -163,27 +163,27 @@
 										</div>
 
 										<div class="field half">
-											<input type="date" name="pickup" id="date-from" placeholder="Pick-up date/time" fdprocessedid="jupx1a">
+											<input type="date" name="pickup" id="date-from" placeholder="Pick-up date/time">
 											<p style="color:red;"><?= $_SESSION["errors"]["date"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
-											<input type="date" name="return_date" id="date-to" placeholder="Return date/tiem" fdprocessedid="ox90qs">
+											<input type="date" name="return_date" id="date-to" placeholder="Return date/time">
 											<p style="color:red;"><?= $_SESSION["errors"]["date"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
-											<input type="email" name="email" id="email" placeholder="Email" fdprocessedid="09lf6a">
+											<input type="email" name="email" id="email" placeholder="Email">
 											<p style="color:red;"><?= $_SESSION["errors"]["email"] ?? "" ?></p>
 										</div>
 
 										<div class="field half">
-											<input type="text" name="contact" id="phone" placeholder="Phone" fdprocessedid="cufy9">
+											<input type="text" name="contact" id="phone" placeholder="Phone">
 											<p style="color:red;"><?= $_SESSION["errors"]["contact"] ?? "" ?></p>
 										</div>
 
 										<div class="field">
-											<div class="textarea-wrapper"><textarea name="car_comment" id="message" rows="1" placeholder="Comment" style="overflow: hidden; resize: none; height: 69px;"></textarea></div>
+											<div class="textarea-wrapper"><textarea name="car_comment" id="message" rows="1" placeholder="Comment"></textarea></div>
 											<p style="color:red;"><?= $_SESSION["errors"]["car_comment"] ?? "" ?></p>
 										</div>
 
@@ -191,12 +191,14 @@
 											<label>&nbsp;</label>
 
 											<ul class="actions">
-												<li><input type="submit" value="Book now" class="primary" fdprocessedid="f4gtx"></li>
+												<li><input type="submit" value="Book now" class="primary"></li>
 											</ul>
 										</div>
 									</div>
 								</form>
 							</section>
+							<!-- After displaying errors, clear them so they don't persist on reload -->
+							<?php if (isset($_SESSION['errors'])) { unset($_SESSION['errors']); } ?>
 							<section>
 								<h2>Contact Info</h2>
 
