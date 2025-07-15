@@ -160,6 +160,7 @@
 								<th>Pickup</th>
 								<th>Return Date</th>
 								<th>Comment</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -168,9 +169,10 @@
 							$db = new Database('localhost', 'root', '', 'car_rentals');
 							$rentals = [];
 							try {
-								$rentals = $db->connect()->query('SELECT name, email, offer, contact, pickup, return_date, car_comment FROM booking')->fetchAll(PDO::FETCH_ASSOC);
+								// Fetch id for the View link, but do not display it in the table
+								$rentals = $db->connect()->query('SELECT id, name, email, offer, contact, pickup, return_date, car_comment FROM booking')->fetchAll(PDO::FETCH_ASSOC);
 							} catch (Exception $e) {
-								echo '<tr><td colspan="7">Error fetching bookings</td></tr>';
+								echo '<tr><td colspan="8">Error fetching bookings</td></tr>';
 							}
 							if ($rentals && count($rentals) > 0):
 								foreach ($rentals as $row): ?>
@@ -182,18 +184,17 @@
 										<td><?= htmlspecialchars($row['pickup']) ?></td>
 										<td><?= htmlspecialchars($row['return_date']) ?></td>
 										<td><?= htmlspecialchars($row['car_comment']) ?></td>
+										<td><a href="update.php?id=<?= urlencode($row['id']) ?>">View</a></td>
 									</tr>
 								<?php endforeach;
 							else: ?>
-								<tr>
-									<td colspan="7">No bookings found.</td>
-								</tr>
+								<tr><td colspan="8">No bookings found.</td></tr>
 							<?php endif; ?>
 						</tbody>
 					</table>
 				</section>
 				<section>
-					<h2>Contact Info</h2>
+					<!-- <h2>Contact Info</h2>
 
 					<ul class="alt">
 						<li><span class="fa fa-envelope-o"></span> <a href="https://demo.phpjabbers.com/free-web-templates/car-rental-website-template-186/offers.html#">contact@company.com</a></li>
@@ -208,7 +209,7 @@
 						<li><a href="https://demo.phpjabbers.com/free-web-templates/car-rental-website-template-186/offers.html#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
 						<li><a href="https://demo.phpjabbers.com/free-web-templates/car-rental-website-template-186/offers.html#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
 						<li><a href="https://demo.phpjabbers.com/free-web-templates/car-rental-website-template-186/offers.html#" class="icon style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
-					</ul>
+					</ul> -->
 				</section>
 
 				<ul class="copyright">

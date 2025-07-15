@@ -53,9 +53,41 @@ class Database
     {
         try {
             $query = $this->db->query("SELECT * FROM booking WHERE 1");
-            $query->fetchAll(PDO::FETCH_ASSOC);
+            return $query->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "Failed to fetch rentals" . $e->getMessage();
+        }
+    }
+
+    public function getSingleBooking($id)
+    {
+        try {
+            $query = $this->db->prepare("SELECT * FROM booking WHERE id = ?");
+            $query->bindParam(1, $id);
+            $query->execute();
+            return $query->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Failed to fetch booking" . $e->getMessage();
+        }
+    }
+
+    public function updateBookingTable($id, $name, $email, $offer, $contact, $pickup, $return_date, $car_comment)
+    {
+        try {
+            $query = $this->db->prepare("UPDATE booking SET name = ?, email = ?, offer = ?, contact = ?, pickup = ?, return_date = ?, car_comment = ? WHERE id = ?");
+            $query->bindParam(1, $name);
+            $query->bindParam(2, $email);
+            $query->bindParam(3, $offer);
+            $query->bindParam(4, $contact);
+            $query->bindParam(5, $pickup);
+            $query->bindParam(6, $return_date);
+            $query->bindParam(7, $car_comment);
+            $query->bindParam(8, $id);
+
+            $query->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Failed to insert into table" . $e->getMessage();
         }
     }
 }
